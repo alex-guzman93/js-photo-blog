@@ -1,7 +1,6 @@
 //seleiono elemento di conteiner output 
 const outputCont = document.querySelector(".container-cards")
 const overlay = document.querySelector(".overlay")
-const onOff = document.querySelector(".on-off")
 // console.log(outputCont);
 
 // creo riferimento endpoint
@@ -19,11 +18,11 @@ axios.get(endpoint)
             // console.log(dataCard);
 
             //aggiungiamo una card per ogni forEach loop
-            outputCont.innerHTML += `<figure class="card">
-                <img class="pin" src="./img/pin.svg" alt="#">
-                <img src=${dataCard.url} class="imgs" alt="#">
-                <figcaption> ${dataCard.title}</figcaption>
-            </figure>`
+            outputCont.innerHTML += `<figure imgId=${dataCard.id} class="card">
+        <img class="pin" src="./img/pin.svg" alt="#">
+        <img src=${dataCard.url} class="imgs" alt="#">
+        <figcaption> ${dataCard.title}</figcaption>
+        </figure>`
 
         });
         const figures = document.querySelectorAll(".card")
@@ -32,10 +31,20 @@ axios.get(endpoint)
             figure.addEventListener("click", () => {
                 // console.log(figure);
                 overlay.style.display = "flex"
+                const cardId = figure.getAttribute("imgId")
+                const url = dataArray.find(o => o.id == cardId).url
+                console.log(url);
+                overlay.innerHTML = `<div class="container-overlay">            
+            <button class="on-off">chiudi</button>
+            <img src=${url} class="img-overlay" alt="#">
+            </div>`
+            const onOff = document.querySelector(".on-off")
+            onOff.addEventListener("click", () => {
+                overlay.style.display = "none"
             })
-        })
-        onOff.addEventListener("click", () => {
-            overlay.style.display = "none"
+
+            })
+
         })
     })
     .catch()
