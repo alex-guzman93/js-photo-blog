@@ -55,3 +55,20 @@ figcaption {
     /* border: solid 2px black; */
 
 }
+/* responsive tablet */
+@media screen and (max-width: 768px) {
+    .card{
+         width: calc(100% / 2 - 2rem );
+    } 
+   
+}
+/* responsive phone */
+@media screen and (max-width: 420px) {
+    .card {
+        width: 100%;
+    }
+    .title {
+        font-size: 30px;
+    }
+}
+
