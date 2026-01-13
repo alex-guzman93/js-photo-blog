@@ -18,6 +18,7 @@ axios.get(endpoint)
 
         //aggiungiamo una card per ogni forEach loop
         outputCont.innerHTML +=`<figure class="card">
+                <img class="pin" src="./img/pin.svg" alt="#">
                 <img src=${dataCard.url} class="imgs" alt="#">
                 <figcaption> ${dataCard.title}</figcaption>
                 
